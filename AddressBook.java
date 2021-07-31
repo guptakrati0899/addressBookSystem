@@ -62,6 +62,23 @@ public class AddressBook{
         }
         else System.out.println("Error:Address book is full");
     }
+    
+    public void remove(int entry){
+        if (entries>=0){
+            contents[entry] = new Entry();
+            for (int i = 0;i<entries-entry;i++){
+                if (entry+1==entries) contents[entry] = new Entry();
+                else{
+                    Entry temp = contents[entry+i];
+                    contents[entry+i] = contents[entry+i+1]; //Removes an entry end moves each entry after it one backwards.
+                    contents[entry+i+1] = temp;
+                }
+            }
+            entries--;
+            }
+            else System.out.println("Error:Address  book is empty.");
+    }
+    
     public void edit(String firstName, String lastName, String address,String city,String zip,String phoneNumber, String email,int selection){
         contents[selection].firstName = firstName;
         contents[selection].lastName = lastName;

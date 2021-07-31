@@ -58,7 +58,8 @@ public class AddressBookMain {
 	            System.out.println("Select an option!");
 	            System.out.println("1. Add an entry");
 	            System.out.println("2. Edit Existing Entry");
-	            System.out.println("3. Exit the menu");
+	            System.out.println("3. Remove an Entry");
+	            System.out.println("4. Exit the menu");
 	            System.out.print("> ");
 	            selection = s.nextInt();
 	            String firstName, lastName, address,city,zip,phoneNumber, email;
@@ -102,8 +103,12 @@ public class AddressBookMain {
 	                email = s.next();
 	                account[selectedBook].edit(firstName, lastName, address,city,zip,phoneNumber, email, whichEntry);
 	                break;
-	                
-	            case 3:
+	            case 3: 
+	                System.out.print("Remove which entry? ");
+	                int entry = s.nextInt();
+	                account[selectedBook].remove(entry);
+	                break;
+	            case 4:
 	                done = true;
 	                break;
 	                
