@@ -1,74 +1,94 @@
 package addressBookSystem;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 
 public class AddressBookMain {
 	      
 	  
-	        private String firstName;
-	        private String lastName;
-	        private String address;
-	        private String city;
-	        private String state;
-	        private int zip;
-	        private long phoneNumber;
-	        private String email;
-	      
+	    public static void main(String[] args){
+	        Scanner s = new Scanner(System.in);
+	        System.out.print("How many books do you want to create? ");
+	        int maxEntries;
+	        int howManyEntries;
 
-	        void getEntry()          
-	        {
-	      
-	            Scanner sc = new Scanner(System.in);
+	        AddressBook[] account = new AddressBook[0];
 
-	            System.out.print("\n\tEnter First Name : ");
-	            firstName = sc.nextLine();
 
-	            System.out.print("\n\tEnter Last Name : ");
-	            lastName = sc.nextLine();
-
-	            System.out.print("\n\tEnter Address : ");
-	            address = sc.nextLine();
-
-	            System.out.print("\n\tEnter City : ");
-	            city  = sc.nextLine();
-
-	            System.out.print("\n\tEnter State : ");
-	            state  = sc.nextLine();
-	            
-	            System.out.println("\n\tEnter Email : ");
-	            email =sc.nextLine();
-
-	            System.out.print("\n\tEnter Zip : ");
-	            zip = sc.nextInt();
-
-	            System.out.print("\n\tEnter Phone Number : ");
-	            phoneNumber = sc.nextLong();
-	            
+	       while(true){
+	            maxEntries = s.nextInt();
+	            if (maxEntries>0){
+	                account = new AddressBook[maxEntries];                   //This code decides how many books are in the array of books
+	                break;
 	            }
-	            
-	            public void readEntry(){
-	            System.out.println("First Name:"+firstName );
-	            System.out.println("Last Name:"+lastName );
-	            System.out.println("Address:"+address );
-	            System.out.println("City:"+city );
-	            System.out.println("State:"+state);
-	            System.out.println("Email:"+email );
-	            System.out.println("Zip:"+zip );
-	            System.out.println("Phone Number:"+phoneNumber );
-	          
+	            else System.out.print("You must create at least 1 entry.");
+	            }
+
+
+
+	        for (int i=0;i<account.length;i++){
+
+
+	            account[i] = new AddressBook(); //Fixed reference to null because each book in the library had not been initialized yet.
+
+	            while(true){
+	                System.out.print("How many entries in book "+i+"? ");
+	                howManyEntries = s.nextInt();
+	                if (howManyEntries>0) {
+	                    account[i].initEntries(howManyEntries);                 //This code decides how many entries are in each book in the Account
+	                    break;
+	                }
+	                else System.out.println("You must create at least 1 Entry.");
+	                }
+
+
 	        }
-	   
+	        boolean done = false;
+	        int selectedBook = 0;
+	        int selection;
+	        while (done==false){
+	            System.out.println("Address Book "+selectedBook+" is currently selected.");
 
-            public static void main(String[] args) {
-         	   
-         	   System.out.println("Welcome to Address Book Master Branch");
-         	   
-         	   AddressBookMain a = new AddressBookMain();
-         	   
-         	   a.getEntry();
-         	   a.readEntry();
-         	   
-            }
-}
+	            for (int i = 0;i<account[selectedBook].getEntries();i++){
+	                System.out.println("===========Entry "+i+" ===========");
+	                account[selectedBook].contents[i].readEntry(); //Accessing the array of entries INSIDE the array of Address books
+	                System.out.println("================================");
+	            }
 
+
+	            System.out.println("Select an option!");
+	            System.out.println("1. Add an entry");
+	            System.out.println("2. Exit the menu");
+	            System.out.print("> ");
+	            selection = s.nextInt();
+	            String firstName, lastName, address,city,zip,phoneNumber, email;
+	            switch(selection){
+	            case 1: 
+	                System.out.print("First name? ");
+	                firstName = s.next();
+	                System.out.print("Last name? ");
+	                lastName = s.next();
+	                System.out.print("Address? ");
+	                address = s.next();
+	                System.out.print("City? ");
+	                city = s.next();
+	                System.out.print("Zip? ");
+	                zip = s.next();
+	                System.out.print("Phone Number? ");
+	                phoneNumber = s.next();
+	                System.out.print("Email? ");
+	                email = s.next();
+	                account[selectedBook].add(firstName, lastName, address,city,zip,phoneNumber, email);
+	                break;
+	                
+
+	            case 2:
+	                done = true;
+	                break;
+	            default:
+	                System.out.print("Please choose a valid menu number");
+
+
+	            }
+	        }
+	    }
+	}
