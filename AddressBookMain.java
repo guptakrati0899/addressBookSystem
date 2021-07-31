@@ -57,7 +57,8 @@ public class AddressBookMain {
 
 	            System.out.println("Select an option!");
 	            System.out.println("1. Add an entry");
-	            System.out.println("2. Exit the menu");
+	            System.out.println("2. Edit Existing Entry");
+	            System.out.println("3. Exit the menu");
 	            System.out.print("> ");
 	            selection = s.nextInt();
 	            String firstName, lastName, address,city,zip,phoneNumber, email;
@@ -81,9 +82,31 @@ public class AddressBookMain {
 	                break;
 	                
 
+	         
 	            case 2:
+	                System.out.print("Edit which entry?");
+	                int whichEntry = s.nextInt();
+	                System.out.print("First name? ");
+	                firstName= s.next();
+	                System.out.print("Last name? ");
+	                lastName = s.next();
+	                System.out.print("Address? ");
+	                address = s.next();
+	                System.out.print("City? ");
+	                city = s.next();
+	                System.out.print("Zip? ");
+	                zip = s.next();
+	                System.out.print("Phone Number? ");
+	                phoneNumber = s.next();
+	                System.out.print("Email? ");
+	                email = s.next();
+	                account[selectedBook].edit(firstName, lastName, address,city,zip,phoneNumber, email, whichEntry);
+	                break;
+	                
+	            case 3:
 	                done = true;
 	                break;
+	                
 	            default:
 	                System.out.print("Please choose a valid menu number");
 

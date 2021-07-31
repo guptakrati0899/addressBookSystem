@@ -62,4 +62,13 @@ public class AddressBook{
         }
         else System.out.println("Error:Address book is full");
     }
+    public void edit(String firstName, String lastName, String address,String city,String zip,String phoneNumber, String email,int selection){
+        contents[selection].firstName = firstName;
+        contents[selection].lastName = lastName;
+        contents[selection].address = address;
+        contents[selection].city = city;
+        contents[selection].zip = zip;
+        contents[selection].phoneNumber = phoneNumber;
+        contents[selection].email = email;
+    }
 }
